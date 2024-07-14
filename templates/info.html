@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+
+{% block title %}
+MUSIFY | Info
+{% endblock %}
+
+{% block main %}
+
+<div class="bg-[url('/static/info.jpg')] bg-cover bg-center h-screen">
+
+    <div class="container mx-auto py-8">
+
+        <div class="px-16 grid grid-cols-2 gap-40">
+
+            <div class="ml-8">
+                <div>
+                    <h2 class="text-4xl text-pink-500 font-serif font-bold text-center">Danceability</h2>
+                    <p class="py-3 text-lg text-yellow-400 text-justify font-semibold">Danceability is a measure of how
+                        easy or
+                        enjoyable it is for listeners to move or dance to the music. Songs with high danceability
+                        typically have a strong and steady beat, a rhythmic structure that encourages movement, and a
+                        tempo that aligns well with common dance styles.
+                    </p>
+                </div>
+                <div class="my-6">
+                    <h2 class="text-4xl text-orange-400 font-serif font-bold text-center">Energy</h2>
+                    <p class="py-3 text-lg text-lime-400 text-justify font-semibold">Energy in music refers to the
+                        intensity, power,
+                        vigor, and liveliness conveyed by a song or a musical performance. It's the sense of dynamism,
+                        excitement, and drive that listeners perceive in the music. Songs with high energy typically
+                        have fast tempos, strong beats, and lively rhythms that create a sense of urgency or power.</p>
+                </div>
+                <div class="my-6">
+                    <h2 class="text-4xl text-pink-500 font-serif font-bold text-center">Tempo</h2>
+                    <p class="py-3 text-lg text-yellow-400 text-justify font-semibold">Tempo in music refers to the
+                        speed or pace at
+                        which a piece of music is performed or intended to be performed. It's a fundamental element that
+                        helps define the character and feel of a song. It is typically measured in beats per minute
+                        (BPM), indicating how many beats occur within one minute of time.</p>
+                </div>
+            </div>
+
+            <div class="mr-8">
+                <div>
+                    <h2 class="text-4xl text-pink-500 font-serif font-bold text-center">Acousticness</h2>
+                    <p class=" py-3 text-lg text-yellow-400 text-justify font-semibold">It reflects the degree to which
+                        the music is
+                        dominated by acoustic instruments as opposed to electronic or amplified instruments. Acoustic
+                        music often has a more intimate, raw, and authentic feel compared to electronically produced
+                        music.</p>
+                </div>
+                <div class="my-6">
+                    <h2 class="text-4xl text-orange-400 font-serif font-bold text-center">Liveness</h2>
+                    <p class=" py-3 text-lg text-lime-400 text-justify font-semibold">Liveness in music refers to the
+                        quality of a
+                        performance that conveys a sense of immediacy, energy, and spontaneity. It's the feeling that
+                        the music is being created in the moment, often in front of an audience, rather than being
+                        recorded or reproduced.</p>
+                </div>
+                <div class="my-6">
+                    <h2 class="text-4xl text-pink-500 font-serif font-bold text-center">Valence</h2>
+                    <p class=" py-3 text-lg text-yellow-400 text-justify font-semibold">Valence refers to the emotional
+                        quality or
+                        mood conveyed by a song or a piece of music. It reflects the positivity or negativity of the
+                        emotions expressed through the music. Songs with high valence are typically perceived as more
+                        positive, cheerful, or uplifting, evoking feelings of happiness, excitement, or contentment in
+                        listeners.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

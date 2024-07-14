@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block title %}
+MUSIFY | ABOUT US
+{% endblock %}
+
+{% block main %}
+
+<div class="bg-[url('/static/about.jpg')] bg-cover bg-center h-screen w-screen">
+    <header class="text-violet-800">
+        <div class="container mx-auto flex flex-col items-center p-4">
+            <h1 class="text-6xl font-bold">Musify</h1>
+            <p class="text-2xl mt-2">Your personalized music recommendation hub</p>
+        </div>
+    </header>
+    <main class="container mx-auto my-9 p-6">
+        <div class="mb-8 bg-white bg-opacity-80 rounded-xl">
+            <h2 class="text-3xl font-bold text-violet-800 mb-4">Our Mission</h2>
+            <p class="text-fuchsia-600 text-lg font-medium">At Musify, our mission is to enhance your musical journey by
+                offering tailored song
+                recommendations that resonate with your unique tastes. We believe that music is a powerful medium that
+                can evoke emotions, create memories, and bring people together. Our goal is to help you discover new
+                tracks and artists that you'll love.</p>
+        </div>
+
+        <div class="mb-8 bg-white bg-opacity-80 rounded-xl">
+            <h2 class="text-3xl font-bold text-violet-800 mb-4">What We Do</h2>
+            <p class="text-fuchsia-600 text-lg font-medium">Musify is designed to be your go-to platform for discovering
+                new music. We do not
+                play songs directly but provide carefully curated recommendations based on your preferences. Whether
+                you're looking for the latest hits, hidden gems, or classic favorites, Musify offers a variety of
+                choices to suit every mood and occasion.</p>
+        </div>
+
+        <div class="mb-6 bg-white bg-opacity-80 rounded-xl">
+            <h2 class="text-3xl font-bold text-violet-800 mb-4">Why Musify?</h2>
+            <ul class="list-disc pl-5 text-fuchsia-600 text-lg font-medium">
+                <li class="mb-2"><strong>Personalization</strong>: We understand that everyone's musical taste is
+                    unique. That's why we focus on providing recommendations that are specifically tailored to you.</li>
+                <li class="mb-2"><strong>Variety</strong>: With a vast library of songs spanning multiple genres and
+                    eras, there's always something new to discover.</li>
+                <li class="mb-2"><strong>Diverse Selection</strong>: Explore a wide range of musical styles and discover
+                    new favorites every day.</li>
+            </ul>
+        </div>
+    </main>
+
+    <footer class="bg-blue-600 text-white my-16 py-5 text-center font-bold">
+        <p>&copy; 2024 Musify. All rights reserved.</p>
+    </footer>
+</div>
+
+{% endblock %}

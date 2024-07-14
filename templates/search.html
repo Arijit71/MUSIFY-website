@@ -1,0 +1,415 @@
+{% extends "layout.html" %}
+
+{% block title %}
+MUSIFY | Search
+{% endblock %}
+
+{% block main %}
+
+<div class="bg-[url('/static/search.jpg')] bg-cover bg-center h-screen">
+    <div class="py-16 px-20">
+        <form action="/search" method="post">
+            {% if error %}
+            <script>
+                alert("{{ error }}");
+            </script>
+            {% endif %}
+            <div class="flex justify-around">
+                <select name="danceability"
+                    class="bg-cyan-300 border border-gray-300 text-black text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 mt-1 block w-1/4 py-2 text-center font-semibold">
+                    <option selected disabled value="">--Choose Danceability--</option>
+                    <option value="low">Low</option>
+                    <option value="average">Average</option>
+                    <option value="high">High</option>
+                    <option value="very_high">Very High</option>
+                </select>
+
+                <select name="energy"
+                    class="bg-yellow-300 border border-gray-300 text-black text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 mt-1 block w-1/4 py-2 text-center font-semibold">
+                    <option selected disabled value="">--Choose Energy--</option>
+                    <option value="low">Low</option>
+                    <option value="average">Average</option>
+                    <option value="high">High</option>
+                    <option value="very_high">Very High</option>
+                </select>
+
+                <select name="tempo"
+                    class="bg-green-300 border border-gray-300 text-black text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 mt-1 block w-1/4 py-2 text-center font-semibold">
+                    <option selected disabled value="">--Choose Tempo--</option>
+                    <option value="low">Low</option>
+                    <option value="average">Average</option>
+                    <option value="high">high</option>
+                    <option value="very_high">Very High</option>
+                </select>
+
+            </div>
+
+            <div class="flex justify-around py-36">
+
+                <select name="loudness"
+                    class="bg-cyan-300 border border-gray-300 text-black text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 mt-1 block w-1/4 mx-2 py-2 text-center font-semibold">
+                    <option selected disabled value="">--Choose Loudness--</option>
+                    <option value="low">Low</option>
+                    <option value="average">Average</option>
+                    <option value="high">high</option>
+                    <option value="very_high">Very High</option>
+                </select>
+
+
+                <input autocomplete="off"
+                    class="bg-cyan-300 border border-gray-300 text-black text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 mt-1 block w-1/4 mr-3 py-2 text-center font-semibold placeholder-pink-500"
+                    name="artists" placeholder="Select Artist" type="text">
+
+
+                <div class="relative">
+                    <button type="button" id="dropdownButton"
+                        class="flex items-center w-[21rem] mt-1 bg-green-300 border border-gray-300 text-black text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 text-center font-semibold p-2.5 mr-2 py-2">
+                        <span class="flex-grow text-center">--Choose Genre--</span>
+                        <svg class="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button>
+
+                    <input type="hidden" name="selected_option" id="selectedOption">
+                    <div id="dropdownMenu" class="custom-select-dropdown">
+                        <ul class="py-1 text-center bg-green-300 text-black text-lg">
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="acoustic">acoustic
+                            </li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="afrobeat">afrobeat
+                            </li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="alt-rock">alt-rock
+                            </li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="alternative">
+                                alternative</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="ambient">ambient
+                            </li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="anime">anime</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="black-metal">
+                                black-metal</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="bluegrass">
+                                bluegrass</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="blues">blues</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="brazil">brazil
+                            </li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="breakbeat">
+                                breakbeat</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="british">british
+                            </li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="cantopop">cantopop
+                            </li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="chicago-house">
+                                chicago-house</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="children">children
+                            </li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="chill">chill</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="classical">
+                                classical</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="club">club</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="comedy">comedy
+                            </li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="country">country
+                            </li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="dance">dance</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="dancehall">
+                                dancehall</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="death-metal">
+                                death-metal</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="deep-house">
+                                deep-house</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="detroit-techno">
+                                detroit-techno</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="disco">disco</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="disney">disney
+                            </li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="drum-and-bass">
+                                drum-and-bass</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="dub">dub</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="dubstep">dubstep
+                            </li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="edm">edm</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="electro">electro
+                            </li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="electronic">
+                                electronic</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="emo">emo</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="folk">folk</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="forro">forro</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="french">french
+                            </li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="funk">funk</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="garage">garage
+                            </li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="german">german
+                            </li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="gospel">gospel
+                            </li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="goth">goth</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="grindcore">
+                                grindcore</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="groove">groove
+                            </li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="grunge">grunge
+                            </li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="guitar">guitar
+                            </li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="happy">happy</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="hard-rock">
+                                hard-rock</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="hardcore">hardcore
+                            </li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="hardstyle">
+                                hardstyle</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="heavy-metal">
+                                heavy-metal</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="hip-hop">hip-hop
+                            </li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="honky-tonk">
+                                honky-tonk</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="house">house</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="idm">idm</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="indian">indian
+                            </li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="indie-pop">
+                                indie-pop</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="indie">indie</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="industrial">
+                                industrial</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="iranian">iranian
+                            </li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="j-dance">j-dance
+                            </li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="j-idol">j-idol
+                            </li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="j-pop">j-pop</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="j-rock">j-rock
+                            </li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="jazz">jazz</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="k-pop">k-pop</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="kids">kids</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="latin">latin</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="latino">latino
+                            </li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="malay">malay</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="mandopop">mandopop
+                            </li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="metal">metal</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="metalcore">
+                                metalcore</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="minimal-techno">
+                                minimal-techno</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="mpb">mpb</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="new-age">new-age
+                            </li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="opera">opera</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="pagode">pagode
+                            </li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="party">party</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="piano">piano</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="pop-film">pop-film
+                            </li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="pop">pop</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="power-pop">
+                                power-pop</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white"
+                                data-value="progressive-house">progressive-house</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="psych-rock">
+                                psych-rock</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="punk-rock">
+                                punk-rock</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="punk">punk</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="r-n-b">r-n-b</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="reggae">reggae
+                            </li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="reggaeton">
+                                reggaeton</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="rock-n-roll">
+                                rock-n-roll</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="rock">rock</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="rockabilly">
+                                rockabilly</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="romance">romance
+                            </li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="sad">sad</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="salsa">salsa</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="samba">samba</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="sertanejo">
+                                sertanejo</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="show-tunes">
+                                show-tunes</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white"
+                                data-value="singer-songwriter">singer-songwriter</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="ska">ska</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="sleep">sleep</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="songwriter">
+                                songwriter</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="soul">soul</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="spanish">spanish
+                            </li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="study">study</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="swedish">swedish
+                            </li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="synth-pop">
+                                synth-pop</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="tango">tango</li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="techno">techno
+                            </li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="trance">trance
+                            </li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="trip-hop">trip-hop
+                            </li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="turkish">turkish
+                            </li>
+                            <li class="cursor-pointer hover:bg-blue-600 hover:text-white" data-value="world-music">
+                                world-music</li>
+                        </ul>
+                    </div>
+                </div>
+
+
+
+                <script>
+                    document.getElementById('dropdownButton').addEventListener('click', function () {
+                        var dropdownMenu = document.getElementById('dropdownMenu');
+                        dropdownMenu.classList.toggle('show');
+                    });
+
+                    document.addEventListener('click', function (event) {
+                        var dropdownButton = document.getElementById('dropdownButton');
+                        var dropdownMenu = document.getElementById('dropdownMenu');
+                        if (!dropdownButton.contains(event.target)) {
+                            dropdownMenu.classList.remove('show');
+                        }
+                    });
+
+                    var dropdownItems = document.querySelectorAll('#dropdownMenu li');
+                    dropdownItems.forEach(function (item) {
+                        item.addEventListener('click', function (event) {
+                            var value = event.target.getAttribute('data-value');
+                            document.getElementById('selectedOption').value = value;
+                            document.getElementById('dropdownButton').querySelector('span').textContent = value;
+                            document.getElementById('dropdownMenu').classList.remove('show');
+                        });
+                    });
+                </script>
+
+
+
+
+
+
+
+
+
+
+
+                <!-- <script>
+                    const options = [
+                        "Option 1",
+                        "Option 2",
+                        "Another Option",
+                        // Add more options here
+                    ];
+
+                    const userInput = document.getElementById("userInput");
+                    const dynamicSelect = document.getElementById("dynamicSelect");
+
+                    userInput.addEventListener("input", updateSelectOptions);
+
+                    function updateSelectOptions(searchTerm) {
+                        const filteredOptions = options.filter(option =>
+                            option.toLowerCase().includes(searchTerm.toLowerCase())
+                        );
+
+                        // Clear existing options
+                        dynamicSelect.innerHTML = "";
+
+                        // Add filtered options
+                        filteredOptions.forEach(option => {
+                            const optionElement = document.createElement("option");
+                            optionElement.value = option;
+                            optionElement.textContent = option;
+                            dynamicSelect.appendChild(optionElement);
+                        });
+                    }
+
+                    function updateInput(selectedValue) {
+                        userInput.value = selectedValue;
+                    }
+                </script> -->
+
+
+                <!-- <input autocomplete="off"
+                    class="genre bg-green-300 border border-gray-300 text-black text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 mt-1 block w-1/4 ml-6 py-2 text-center font-semibold placeholder-pink-500"
+                    name="artist" placeholder="Select Artist" type="text">
+
+                <ul class="text-sm"></ul>
+
+                <script>
+
+                    let input_g = document.querySelector('.genre');
+                    input_g.addEventListener('input', async function () {
+                        let response = await fetch('/search?q=' + input_g.value);
+                        let artist = await response.json();
+                        let html = '';
+                        for (let id in artist) {
+                            let name = artist[id].name.replace('<', '&lt;').replace('&', '&amp;');
+                            html += '<li>' + name + '</li>';
+                        }
+                        document.querySelector('ul').innerHTML = html;
+                    });
+
+                </script> -->
+
+            </div>
+
+            <div class="flex justify-around py-5">
+
+                <select name="acousticness"
+                    class="bg-cyan-300 border border-gray-300 text-black text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 mt-1 block w-1/4 py-2 text-center font-semibold">
+                    <option selected disabled value="">--Choose Acousticness--</option>
+                    <option value="low">Low</option>
+                    <option value="average">Average</option>
+                    <option value="high">high</option>
+                    <option value="very_high">Very High</option>
+                </select>
+
+                <select name="liveness"
+                    class="bg-yellow-300 border border-gray-300 text-black text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 mt-1 block w-1/4 py-2 text-center font-semibold">
+                    <option selected disabled value="">--Choose Liveness--</option>
+                    <option value="low">Low</option>
+                    <option value="average">Average</option>
+                    <option value="high">high</option>
+                    <option value="very_high">Very High</option>
+                </select>
+
+                <select name="valence"
+                    class="bg-green-300 border border-gray-300 text-black text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 mt-1 block w-1/4 py-2 text-center font-semibold">
+                    <option selected disabled value="">--Choose Valence--</option>
+                    <option value="low">Low</option>
+                    <option value="average">Average</option>
+                    <option value="high">high</option>
+                    <option value="very_high">Very High</option>
+                </select>
+
+            </div>
+
+            <div class="flex flex-col items-center py-8">
+                <button
+                    class="bg-pink-600 hover:bg-purple-600 text-white text-lg font-bold px-6 py-3 w-fit rounded-full text-center transition ease-in-out hover:-translate-y-1 hover:scale-125 duration-300"
+                    type="submit">
+                    Submit
+                </button>
+            </div>
+
+
+
+        </form>
+
+
+
+    </div>
+</div>
+
+{% endblock %}

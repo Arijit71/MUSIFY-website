@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+MUSIFY | Songs
+{% endblock %}
+
+{% block main %}
+
+<div class="bg-[url('/static/disc.jpg')] bg-cover bg-center h-screen">
+    <div class="py-4 px-16 overflow-auto">
+        <div class="text-4xl text-orange-500 text-center font-serif font-bold">Here are the recomended songs based on
+            your preferences</div>
+        <div class="py-8">
+            <ul class="text-xl space-y-1 text-pretty text-white columns-3">
+
+                {% if tracks == [] %}
+                <li>No match! Please try again with other specifications!</li>
+                {% endif %}
+
+                {% for track in tracks %}
+                <li value="{{ track }}">{{ track }}</li>
+                {% endfor %}
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
